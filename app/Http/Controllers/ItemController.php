@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -13,7 +14,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+
+        return view('items.list', ['items' => $items]);
     }
 
     /**
@@ -34,7 +37,13 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item;
+        $item->name = $request->name;
+        $item->quantity = $request->quantity;
+        $item->description = $request->description;
+        $item->save();
+
+        return redirect()->route('items.index');
     }
 
     /**
@@ -79,6 +88,9 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::find($id);
+        $item->delete();
+
+        return redirect()->route('items.index');
     }
 }
