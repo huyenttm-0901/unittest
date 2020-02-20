@@ -3,18 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use App\Repositories\ItemRepositoryInterface;
 
-class ItemController extends Controller
+class TaskController extends Controller
 {
-    protected $itemRepository;
-
-    public function __construct(ItemRepositoryInterface $itemRepository)
-    {
-        $this->itemRepository = $itemRepository;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +13,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = $this->itemRepository->getAll();
-
-        return view('items.list', ['items' => $items]);
+        //
     }
 
     /**
@@ -45,15 +34,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'name' => $request->name,
-            'quantity' => $request->quantity,
-            'description' => $request->description,
-            'user_id' => Auth::id(),
-        ];
-        $this->itemRepository->create($data);
-
-        return redirect()->route('items.index');
+        //
     }
 
     /**
@@ -98,8 +79,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $this->itemRepository->destroy($id);
-
-        return redirect()->route('items.index');
+        //
     }
 }

@@ -12,6 +12,7 @@ class Item extends Model
     	'name',
     	'quantity',
     	'description',
+    	'user_id'
     ];
 
     public function user()

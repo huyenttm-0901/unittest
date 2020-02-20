@@ -16,3 +16,4 @@
 Auth::routes();
 
 Route::resource('items', 'ItemController')->middleware('auth');
+Route::resource('tasks', 'TaskController')->middleware('auth');
